@@ -24,6 +24,8 @@ RUN pip install Flask[async]
 
 RUN pip install scikit-learn
 
+RUN pip install pandas
+
 COPY food_recommendation.py .
 
 COPY knn.pkl .
