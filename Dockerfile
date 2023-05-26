@@ -22,7 +22,15 @@ RUN pip install tensorflow
 
 RUN pip install Flask[async]
 
-COPY prediction.py .
+RUN pip install scikit-learn
+
+COPY food_recommendation.py .
+
+COPY knn.pkl .
+
+COPY cleaned_recipes.csv .
+
+COPY prediction_hwg.py .
 
 COPY main.py .
 
