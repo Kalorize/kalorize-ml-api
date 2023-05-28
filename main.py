@@ -43,10 +43,6 @@ async def food_rec():
         gender, weight, height, age, activity_level, target
         )
     
-    # breakfast  = breakfast[["Name", "Calories", "RecipeIngredientParts", "RecipeInstructions"]]
-    # lunch  = lunch[["Name", "Calories", "RecipeIngredientParts", "RecipeInstructions"]]
-    # dinner  = dinner[["Name", "Calories", "RecipeIngredientParts", "RecipeInstructions"]]
-    
     breakfast_list = breakfast.to_dict(orient='records')
     lunch_list = lunch.to_dict(orient='records')
     dinner_list = dinner.to_dict(orient='records')
