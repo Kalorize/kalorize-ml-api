@@ -32,24 +32,24 @@ async def food_rec():
 
     d = request.json
 
-    gender = d["gender"]
-    weight = d["weight"]
-    height = d["height"]
-    age = d["age"]
-    activity_level = d["activity_level"]
-    target = d["target"] 
+    gender          =   d["gender"]
+    weight          =   d["weight"]
+    height          =   d["height"]
+    age             =   d["age"]
+    activity_level  =   d["activity_level"]
+    target          =   d["target"] 
 
     breakfast, lunch, dinner = recommendation(
         gender, weight, height, age, activity_level, target
         )
     
-    breakfast  = breakfast[["Name", "Calories", "RecipeIngredientParts", "RecipeInstructions"]]
-    lunch  = lunch[["Name", "Calories", "RecipeIngredientParts", "RecipeInstructions"]]
-    dinner  = dinner[["Name", "Calories", "RecipeIngredientParts", "RecipeInstructions"]]
+    # breakfast  = breakfast[["Name", "Calories", "RecipeIngredientParts", "RecipeInstructions"]]
+    # lunch  = lunch[["Name", "Calories", "RecipeIngredientParts", "RecipeInstructions"]]
+    # dinner  = dinner[["Name", "Calories", "RecipeIngredientParts", "RecipeInstructions"]]
     
-    breakfast_list = breakfast.values.tolist()
-    lunch_list = lunch.values.tolist()
-    dinner_list = dinner.values.tolist()
+    breakfast_list = breakfast.to_dict(orient='records')
+    lunch_list = lunch.to_dict(orient='records')
+    dinner_list = dinner.to_dict(orient='records')
 
     return {
         "breakfast": breakfast_list, 
