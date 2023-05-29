@@ -21,7 +21,7 @@ async def f2hwg():
     os.remove(path)
 
     return {
-        "height": round(float(height * 10)),
+        "height": round(float(height * 100)),
         "weight": round(float(weight)),
         "gender": gender,
     }
