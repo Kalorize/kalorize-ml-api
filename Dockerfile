@@ -4,9 +4,7 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install libgl1-mesa-glx git wget ffmpeg libsm6 libxext6 libgl1 python3-opencv -y
 
-COPY model_vgg16_2.h5 .
-
-RUN bash -c 'if [ ! -f "model_vgg16_2.h5" ]; then wget https://storage.googleapis.com/kalorize-test/model_vgg16_2.h5; fi'
+RUN wget https://storage.googleapis.com/kalorize-test/model_vgg16_2.h5
 
 RUN pip install opencv-contrib-python-headless
 
