@@ -8,6 +8,8 @@ RUN wget https://storage.googleapis.com/kalorize-test/model_vgg16_2.h5
 
 RUN pip install opencv-contrib-python-headless
 
+RUN pip install python-dotenv
+
 RUN pip install git+https://github.com/rcmalli/keras-vggface.git
 
 RUN pip install mtcnn
