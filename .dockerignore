@@ -1,6 +1,3 @@
-# Model file
-model_vgg16_2.h5
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
