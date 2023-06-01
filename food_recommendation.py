@@ -1,8 +1,5 @@
 import pandas as pd
-import numpy as np
-from sklearn import preprocessing
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.neighbors import NearestNeighbors
 import pickle
 
 # line 9 - 21 harus di initiate
@@ -59,7 +56,6 @@ def recommendation(gender, weight, height, age, activity_level, target):
 
     breakfast_calories = total_calories * 0.35
     lunch_calories = total_calories * 0.40
-    dinner_calories = total_calories * 0.25
 
     breakfast_closest_food = closest(all_calories, breakfast_calories)
     lunch_calories_food = closest(all_calories, lunch_calories)
