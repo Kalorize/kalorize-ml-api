@@ -10,22 +10,23 @@ dataset_ekstrak = df.iloc[:, 6:15]
 
 dataset_fit = min_max_scaler.fit_transform(dataset_ekstrak)
 
-model = pickle.load(
-    open('knn.pkl', 'rb'))
+model = pickle.load(open("knn.pkl", "rb"))
 
 indices = model.kneighbors(dataset_fit, return_distance=False)
 
-all_calories = list(df['Calories'].values)
+all_calories = list(df["Calories"].values)
 
 
 def closest(all_calories, input):
-    return all_calories[min(range(len(all_calories)), key=lambda i: abs(all_calories[i]-input))]
+    return all_calories[
+        min(range(len(all_calories)), key=lambda i: abs(all_calories[i] - input))
+    ]
 
 
 def calculate_bmr(gender, weight, height, age):
-    if gender == 'male':
+    if gender == "male":
         bmr = 10 * weight + 6.25 * height - 5 * age + 5
-    elif gender == 'female':
+    elif gender == "female":
         bmr = 10 * weight + 6.25 * height - 5 * age - 161
     else:
         raise ValueError("Invalid gender. Please choose 'male' or 'female'.")
@@ -33,17 +34,8 @@ def calculate_bmr(gender, weight, height, age):
 
 
 def calculate_total_calories(bmr, activity_level, target):
-    activity_levels = {
-        'easy': 1.375,
-        'medium': 1.55,
-        'hard': 1.725,
-        'extreme': 1.9
-    }
-    targets = {
-        'reduce_weight': 0.8,
-        'increase_muscle': 1.2,
-        'be_healthy': 1
-    }
+    activity_levels = {"easy": 1.375, "medium": 1.55, "hard": 1.725, "extreme": 1.9}
+    targets = {"reduce_weight": 0.8, "increase_muscle": 1.2, "be_healthy": 1}
     maintain_calories = bmr * activity_levels[activity_level]
     total_calories = maintain_calories * targets[target]
     return total_calories
@@ -53,6 +45,7 @@ def calculate_total_calories(bmr, activity_level, target):
 def recommendation(gender, weight, height, age, activity_level, target):
     bmr = calculate_bmr(gender, weight, height, age)
     total_calories = calculate_total_calories(bmr, activity_level, target)
+    total_proteins = 0.8 * weight
 
     breakfast_calories = total_calories * 0.35
     lunch_calories = total_calories * 0.40
@@ -69,5 +62,10 @@ def recommendation(gender, weight, height, age, activity_level, target):
     lunch_similarity = df.iloc[indices[lunch_food_code]]
     dinner_similarity = df.iloc[indices[dinner_food_code]]
 
-    return breakfast_similarity, lunch_similarity, dinner_similarity
-
+    return (
+        breakfast_similarity,
+        lunch_similarity,
+        dinner_similarity,
+        total_calories,
+        total_proteins,
+    )

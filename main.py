@@ -49,7 +49,7 @@ async def food_rec():
     activity_level = d["activity_level"]
     target = d["target"]
 
-    breakfast, lunch, dinner = recommendation(
+    breakfast, lunch, dinner, calories, proteins = recommendation(
         gender, weight, height, age, activity_level, target
     )
 
@@ -58,6 +58,8 @@ async def food_rec():
     dinner_list = dinner.to_dict(orient="records")
 
     return {
+        "calories": round(float(calories), 2),
+        "proteins": round(float(proteins), 2),
         "breakfast": breakfast_list,
         "lunch": lunch_list,
         "dinner": dinner_list,
