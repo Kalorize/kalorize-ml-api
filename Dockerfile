@@ -6,27 +6,31 @@ RUN apt-get update && apt-get install libgl1-mesa-glx git wget ffmpeg libsm6 lib
 
 RUN wget https://storage.googleapis.com/kalorize-test/model_vgg16_2.h5
 
-RUN pip install opencv-contrib-python-headless
+COPY requirements.txt .
 
-RUN pip install python-dotenv
+# RUN pip install opencv-contrib-python-headless
 
-RUN pip install git+https://github.com/rcmalli/keras-vggface.git
+# RUN pip install python-dotenv
 
-RUN pip install mtcnn
+# RUN pip install git+https://github.com/rcmalli/keras-vggface.git
 
-RUN pip install keras
+# RUN pip install mtcnn
 
-RUN pip install numpy
+# RUN pip install keras
 
-RUN pip install keras_applications
+# RUN pip install numpy
 
-RUN pip install tensorflow
+# RUN pip install keras_applications
 
-RUN pip install Flask[async]
+# RUN pip install tensorflow
 
-RUN pip install scikit-learn
+# RUN pip install Flask[async]
 
-RUN pip install pandas
+# RUN pip install scikit-learn
+
+# RUN pip install pandas
+
+RUN pip install -r requirements.txt
 
 COPY food_recommendation.py .
 
