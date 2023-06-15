@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install libgl1-mesa-glx git wget ffmpeg libsm6 libxext6 libgl1 python3-opencv -y
 
-COPY model_vgg16_2.* .
+COPY *.h5 .
 
 RUN [ ! -f "./model_vgg16_2.h5" ] && wget https://storage.googleapis.com/kalorize-test/model_vgg16_2.h5 || true
 
