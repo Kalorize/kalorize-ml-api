@@ -13,7 +13,7 @@ Run instructions:
 2. Go into cloned directiry
 
    ```bash
-   cd f2hwg
+   cd kalorize-ml-api
    ```
 
 3. Download compiled model
